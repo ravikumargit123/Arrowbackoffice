@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2016 SAP SE
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+    <widget-extension widgetId="backofficeMainSlot">
+        <widget id="trainingbackoffice-perspective" widgetDefinitionId="org.training.widgets.trainingbackofficewidget"
+            template="false" slotId="perspectives" title="Hello trainingbackoffice">
+            <setting key="perspectiveImageUrl" value="/cng/images/perspective.png"
+                type="String" />
+        </widget>
+        <widget id="demo-border" widgetDefinitionId="com.hybris.cockpitng.borderlayout" slotId="perspectives" title="Arrow Services" template="false">
+                <widget id="975bf565-8e17-488e-8195-ccd0f179b3fc" widgetDefinitionId="com.hybris.backoffice.perspectiveContainer" slotId="centerSlot" template="false">
+                    <widget id="60473406-ed0c-4487-a4da-1dab213840ec" widgetDefinitionId="com.hybris.cockpitng.dashboard" slotId="perspectives" template="false">
+                        <setting key="widgetStyleClass" type="String"></setting>
+                        <setting key="widgetStyleAttribute" type="String"></setting>
+                        <virtual-sockets/>
+                    </widget>
+                    <widget id="ArgoPrice" widgetDefinitionId="org.myextension.widgets.mysearch" slotId="perspectives" title="ArgoPrice" template="false">
+                        <setting key="widgetStyleClass" type="String"></setting>
+                        <setting key="widgetStyleAttribute" type="String"></setting>
+                        <virtual-sockets/>
+                    </widget>
+                    <setting key="widgetStyleClass" type="String"></setting>
+                    <setting key="cp_admin_fullscreen" type="String">false</setting>
+                    <setting key="widgetStyleAttribute" type="String"></setting>
+                    <virtual-sockets/>
+                </widget>
+                <widget id="demo-tree" widgetDefinitionId="com.hybris.cockpitng.widgets.common.explorertree" slotId="leftSlot" title="Demo Tree" template="false">
+                    <setting key="widgetStyleClass" type="String"></setting>
+                    <setting key="cp_admin_fullscreen" type="String">false</setting>
+                    <setting key="widgetStyleAttribute" type="String"></setting>
+                    <virtual-sockets/>
+                </widget>
+                <setting key="widgetStyleClass" type="String"></setting>
+                <setting key="widgetStyleAttribute" type="String"></setting>
+                <virtual-sockets/>
+            </widget>
+            
+    </widget-extension>
+    <widget-connection sourceWidgetId="demo-tree" outputId="nodeSelected" targetWidgetId="975bf565-8e17-488e-8195-ccd0f179b3fc" inputId="selectPerspective"/>
+<widget-connection sourceWidgetId="explorerTree" outputId="nodeSelected" targetWidgetId="explorerTreeConditionEvaluator" inputId="input"/>
+    <widget-connection sourceWidgetId="explorerTree" outputId="dataSelected" targetWidgetId="backofficeSpaceManagement" inputId="navigationTreeSelectedObject"/>
+    <widget-connection sourceWidgetId="explorerTree" outputId="nodeSelected" targetWidgetId="dashboardConditionEvaluator" inputId="input"/>
+    <widget-connection sourceWidgetId="explorerTree" outputId="nodeSelected" targetWidgetId="backoffice_content_container" inputId="selectPerspective"/>
+    <widget-connection sourceWidgetId="explorerTreeConditionEvaluator" outputId="true" targetWidgetId="explorerTreePropExtractor" inputId="genericInput"/>
+    
+    <widget-connection sourceWidgetId="trainingbackoffice-explorer-tree" outputId="nodeSelected" targetWidgetId="trainingbackoffice-tree-node-adapter" inputId="input"/>
+    <widget-connection sourceWidgetId="trainingbackoffice-tree-node-adapter" outputId="true" targetWidgetId="trainingbackoffice-typecode-extractor" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="trainingbackoffice-tree-node-adapter" outputId="true" targetWidgetId="trainingbackoffice-search-enabler" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="trainingbackoffice-tree-node-adapter" outputId="false" targetWidgetId="trainingbackoffice-search-disabler" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="trainingbackoffice-typecode-extractor" outputId="genericOutput" targetWidgetId="trainingbackoffice-search-logic" inputId="type"/>
+    <widget-connection sourceWidgetId="trainingbackoffice-search-enabler" outputId="genericOutput" targetWidgetId="trainingbackoffice-text-search" inputId="enabled"/>
+    <widget-connection sourceWidgetId="trainingbackoffice-search-disabler" outputId="genericOutput" targetWidgetId="trainingbackoffice-text-search" inputId="enabled"/>
+    <widget-connection sourceWidgetId="trainingbackoffice-text-search" outputId="query" targetWidgetId="trainingbackoffice-search-logic" inputId="searchtext"/>
+    <widget-connection sourceWidgetId="trainingbackoffice-search-logic" outputId="pageable" targetWidgetId="trainingbackoffice-simple-list" inputId="pageable"/>
+
+</widgets>

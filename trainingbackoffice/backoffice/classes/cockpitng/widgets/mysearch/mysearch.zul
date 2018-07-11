@@ -1,0 +1,86 @@
+<widget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.zkoss.org/2005/zul">
+	<style src="${wr}/default.css"/>
+		<hbox align="center">
+		Keyword:
+		<textbox id="keywordBox" />
+		<button id="searchButton" label="Search" image="/widgets/getting_started/img/search.png" />
+			<button id="createPrice"  image="/widgets/getting_started/img/search.png" />
+	
+	</hbox>
+	
+	<listbox id="carListbox" mold="paging" pageSize="4" emptyMessage="No car found in the result" height="160px" style="margin-top:10px">
+		<listhead>
+			<listheader label="Model" />
+			<listheader label="Make" />
+			<listheader label="Price" width="20%"/>
+		</listhead>
+		<template name="model">
+			<listitem>
+				<listcell label="${each.model}"></listcell>
+				<listcell label="${each.make}"></listcell>
+			</listitem>
+		</template>
+	</listbox>
+	<hbox style="margin-top:20px" id="detailBox" visible="false">
+		<image id="previewImage" style="padding:10px" />
+		<vbox>
+			<hlayout>
+				Model : <label id="modelLabel" style="font-weight:bold"/>
+			</hlayout>
+			<hlayout>
+				Make : <label id="makeLabel" style="font-weight:bold"/>
+			</hlayout>
+			<label id="descriptionLabel" />
+		</vbox>
+			</hbox>
+	<hbox style="margin-top:20px" id="createBox" visible="false">
+		<grid>
+            <columns>
+                <column label="Type" width="120px" />
+                <column label="Content" />             
+            </columns>
+            <rows>
+                <row>
+                    <label value="Part Id" width="150px" />
+                    <hlayout>
+                        <textbox id="part_id"
+                            width="150px" tabindex="1" />
+                    </hlayout>
+                    </row>
+                     <row>
+                    <label value="Source Code" width="150px" />
+                    <hlayout>
+                        <textbox id="source_code"
+                            width="150px" tabindex="1" />
+                    </hlayout>
+                    </row>
+                     <row>
+                    <label value="Source Part Id" width="150px" />
+                    <hlayout>
+                        <textbox id="source_part_id"
+                            width="150px" tabindex="1" />
+                    </hlayout>
+                    </row>
+                     <row>
+                    <label value="Price" width="150px" />
+                    <hlayout>
+                        <textbox id="price"
+                            width="150px" tabindex="1" />
+                    </hlayout>
+                    </row>
+                
+                <row>
+                    Modified Date:
+                    <hbox align="center">
+                        <datebox id="modified_date" format="@load(vm.dateFormat)" width="150px"  tabindex="7"/>
+                         </hbox>
+                    </row>
+                    <row>
+             <button id="savePrice" label="Submit" width="100px" height="30px" />
+                    
+                </row>
+            </rows>
+        </grid>		
+		
+	</hbox>
+</widget>
